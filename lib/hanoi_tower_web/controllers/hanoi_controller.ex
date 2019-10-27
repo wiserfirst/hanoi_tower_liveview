@@ -7,7 +7,7 @@ defmodule HanoiTowerWeb.HanoiController do
 
   def show(conn, %{"id" => "initial"}) do
     conn
-    |> assign(:first_rod, 7..1)
+    |> assign(:first_rod, 1..7)
     |> assign(:second_rod, [])
     |> assign(:third_rod, [])
     |> render("show.html")
@@ -15,7 +15,7 @@ defmodule HanoiTowerWeb.HanoiController do
 
   def show(conn, %{"id" => "next"}) do
     conn
-    |> assign(:first_rod, 7..3)
+    |> assign(:first_rod, 3..7)
     |> assign(:second_rod, [1])
     |> assign(:third_rod, [2])
     |> render("show.html")

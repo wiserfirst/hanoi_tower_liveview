@@ -9,9 +9,9 @@
   </head>
   <body>
     <header>
-      <%# <section class="container"> %>
-      <%#   <h1>Awesome Hanoi Tower Game</h1> %>
-      <%# </section> %>
+      <section class="container">
+        <h1>Awesome Hanoi Tower Game</h1>
+      </section>
     </header>
     <%= render @view_module, @view_template, assigns %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

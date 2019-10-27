@@ -1,7 +1,9 @@
 <div class="subcontainer">
   <div class="rod">
+    <div class="disk-container">
     <%= for {n, i} <- Enum.with_index(@rod) do %>
-      <div class="<%= "disk disk#{n} position#{i+1}" %>"></div>
+      <div class="<%= "disk disk#{n}" %>"></div>
     <% end %>
+    </div>
   </div>
 </div>

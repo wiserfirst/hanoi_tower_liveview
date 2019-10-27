@@ -1,0 +1,76 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex: 1 0 auto;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.subcontainer {
+  display: flex;
+  margin: 0 auto;
+  min-height: 100;
+  padding: 100px 0;
+}
+
+.rod {
+  background: rgb(36, 36, 36);
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  width: 10px;
+}
+
+.disk-container {
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.disk {
+  background: rgb(69, 69, 69);
+  border-radius: 10px;
+  height: 25px;
+  margin: 4px auto 0;
+}
+
+.disk1 {
+  width: 100px;
+}
+
+.disk2 {
+  width: 150px;
+}
+
+.disk3 {
+  width: 200px;
+}
+
+.disk4 {
+  width: 250px;
+}
+
+.disk5 {
+  width: 300px;
+}
+
+.disk6 {
+  width: 350px;
+}
+
+.disk7 {
+  width: 400px;
+}
