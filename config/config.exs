@@ -12,6 +12,9 @@ config :hanoi_tower, HanoiTowerWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "QngMHmm3mzGQaWwTndHkaUIK9XAe9J9MUKhCOTXLexKNLVPdmzyhwpf8TxitlqQp",
   render_errors: [view: HanoiTowerWeb.ErrorView, accepts: ~w(html json)],
+  live_view: [
+    signing_salt: "tD3PuQx3cX4dAOG2n+iSsbMOv+os8x/B"
+  ],
   pubsub: [name: HanoiTower.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -21,6 +24,9 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :phoenix,
+  template_engines: [leex: Phoenix.LiveView.Engine]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

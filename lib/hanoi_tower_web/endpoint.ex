@@ -1,6 +1,8 @@
 defmodule HanoiTowerWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :hanoi_tower
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", HanoiTowerWeb.UserSocket,
     websocket: true,
     longpoll: false

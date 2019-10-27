@@ -5,8 +5,10 @@ defmodule HanoiTowerWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_layout, {HanoiTowerWeb.LayoutView, :app}
   end
 
   pipeline :api do
@@ -16,7 +18,7 @@ defmodule HanoiTowerWeb.Router do
   scope "/", HanoiTowerWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", HanoiLive
     resources "/towers", HanoiController, only: [:index, :show]
   end
 

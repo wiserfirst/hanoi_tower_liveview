@@ -1,0 +1,14 @@
+<div class="controls">
+  <div>
+    <form phx-change="disk-num" phx-submit="disk-num">
+      <label for="disk-count">Number of disks:</label>
+      <input id="disk-count" type="text" name="disk-count" phx-debounce="blur" value="<%= @disk_count%>" />
+    </form>
+  </div>
+  <h2><%= @time_elapsed %></h2>
+</div>
+<div class="towers">
+  <%= render HanoiTowerWeb.HanoiView, "rod_live.html", rod: @first_rod, val: 1 %>
+  <%= render HanoiTowerWeb.HanoiView, "rod_live.html", rod: @second_rod, val: 2 %>
+  <%= render HanoiTowerWeb.HanoiView, "rod_live.html", rod: @third_rod, val: 3 %>
+</div>

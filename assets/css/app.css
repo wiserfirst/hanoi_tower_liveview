@@ -10,18 +10,38 @@ body {
   min-height: 100vh;
 }
 
-.container {
+header {
+  text-align: center;
+}
+
+.phx-connected {
+  display: flex;
+  flex: 1 0 auto;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 50px ;
+}
+
+.towers {
   display: flex;
   flex: 1 0 auto;
   flex-wrap: nowrap;
   justify-content: center;
+  margin: 50px 20px;
 }
 
 .subcontainer {
+  cursor: pointer;
   display: flex;
+  justify-content: center;
   margin: 0 auto;
-  min-height: 100;
-  padding: 100px 0;
+  min-width: 200px;
 }
 
 .rod {

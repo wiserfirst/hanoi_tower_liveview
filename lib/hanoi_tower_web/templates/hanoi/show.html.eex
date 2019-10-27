@@ -1,5 +1,5 @@
 <div class="container">
-  <%= render HanoiTowerWeb.HanoiView, "rod.html", rod: @first_rod %>
-  <%= render HanoiTowerWeb.HanoiView, "rod.html", rod: @second_rod %>
-  <%= render HanoiTowerWeb.HanoiView, "rod.html", rod: @third_rod %>
+  <%= live_render HanoiTowerWeb.HanoiView, "rod.html", rod: @first_rod %>
+  <%= live_render HanoiTowerWeb.HanoiView, "rod.html", rod: @second_rod %>
+  <%= live_render HanoiTowerWeb.HanoiView, "rod.html", rod: @third_rod %>
 </div>
