@@ -41,7 +41,7 @@ header {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  min-width: 200px;
+  min-width: 400px;
 }
 
 .rod {

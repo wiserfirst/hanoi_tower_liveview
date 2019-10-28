@@ -1,8 +1,8 @@
-<div class="subcontainer" phx-click="mark-rod" phx-value-rodno="<%= @val %>">
+<div class="subcontainer" phx-click="mark-rod" phx-hook="DropContainer" phx-value-rodno="<%= @val %>">
   <div class="rod">
     <div class="disk-container">
-    <%= for n <- @rod do %>
-      <div class="<%= "disk disk#{n}" %>"></div>
+    <%= for {n, index} <- Enum.with_index(@rod) do %>
+      <div class="<%= "disk disk#{n}" %>" phx-hook="Disk" draggable="<%= index === 0 %>"></div>
     <% end %>
     </div>
   </div>
