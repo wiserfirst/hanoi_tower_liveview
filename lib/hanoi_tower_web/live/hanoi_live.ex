@@ -40,6 +40,10 @@ defmodule HanoiTowerWeb.HanoiLive do
     Map.put(state, :marked, rod_no)
   end
 
+  defp update_disks(%{marked: rod_no} = state, rod_no) do
+    state
+  end
+
   defp update_disks(%{marked: from_rod_no} = state, to_rod_no) do
     from_rod_key = get_rod_key(from_rod_no)
     to_rod_key = get_rod_key(to_rod_no)
