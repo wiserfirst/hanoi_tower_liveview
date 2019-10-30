@@ -17,15 +17,14 @@ import {LiveSocket} from "phoenix_live_view"
 const Hooks = {
   Disk: {
     mounted() {
-      self = this
-      this.el.addEventListener("dragstart", function( event ) {
+      this.el.addEventListener("dragstart", event => {
         // make it half transparent
         event.target.style.opacity = .7
         const rod_no = event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
-        self.pushEvent("mark-rod", {rodno: rod_no})
+        this.pushEvent("mark-rod", {rodno: rod_no})
       }, false)
 
-      this.el.addEventListener("dragend", function( event ) {
+      this.el.addEventListener("dragend", event => {
         // reset the transparency
         event.target.style.opacity = ""
       }, false)
@@ -35,29 +34,28 @@ const Hooks = {
   DropContainer: {
     mounted() {
       /* events fired on the drop targets */
-      this.el.addEventListener("dragover", function( event ) {
+      this.el.addEventListener("dragover", event => {
         // prevent default to allow drop
         event.preventDefault()
       }, false)
 
-      this.el.addEventListener("dragenter", function( event ) {
+      this.el.addEventListener("dragenter", event => {
         // highlight potential drop target when the draggable element enters it
         event.target.style.background = "lightgrey"
       }, false)
 
-      this.el.addEventListener("dragleave", function( event ) {
+      this.el.addEventListener("dragleave", event => {
         // reset background of potential drop target when the draggable element leaves it
         event.target.style.background = ""
       }, false)
 
-      self = this
-      this.el.addEventListener("drop", function( event ) {
+      this.el.addEventListener("drop", event => {
         // prevent default action (open as link for some elements)
         event.preventDefault()
         // move dragged elem to the selected drop target
         event.target.style.background = ""
         const rod_no = event.target.getAttribute("phx-value-rodno")
-        self.pushEvent("mark-rod", {rodno: rod_no})
+        this.pushEvent("mark-rod", {rodno: rod_no})
       }, false)
     }
   }
