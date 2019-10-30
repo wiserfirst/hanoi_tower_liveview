@@ -14,20 +14,15 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
-var dragged;
-
 const Hooks = {
   Disk: {
     mounted() {
+      self = this
       this.el.addEventListener("dragstart", function( event ) {
-        // store a ref. on the dragged elem
-        dragged = event.target;
         // make it half transparent
         event.target.style.opacity = .7
         const rod_no = event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
-        console.log(rod_no)
-
-        this.pushEvent("mark-rod", rod_no)
+        self.pushEvent("mark-rod", {rodno: rod_no})
       }, false)
 
       this.el.addEventListener("dragend", function( event ) {
@@ -55,14 +50,14 @@ const Hooks = {
         event.target.style.background = ""
       }, false)
 
+      self = this
       this.el.addEventListener("drop", function( event ) {
         // prevent default action (open as link for some elements)
         event.preventDefault()
         // move dragged elem to the selected drop target
         event.target.style.background = ""
         const rod_no = event.target.getAttribute("phx-value-rodno")
-        console.log(rod_no)
-        pushEvent("mark-rod", rod_no)
+        self.pushEvent("mark-rod", {rodno: rod_no})
       }, false)
     }
   }
