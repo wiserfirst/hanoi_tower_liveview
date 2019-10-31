@@ -21,7 +21,7 @@ const Hooks = {
         // make it half transparent
         event.target.style.opacity = .7
         const rod_no = event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
-        this.pushEvent("mark-rod", {rodno: rod_no})
+        event.dataTransfer.setData("text/plain", rod_no)
       }, false)
 
       this.el.addEventListener("dragend", event => {
@@ -54,8 +54,9 @@ const Hooks = {
         event.preventDefault()
         // move dragged elem to the selected drop target
         event.target.style.background = ""
-        const rod_no = event.target.getAttribute("phx-value-rodno")
-        this.pushEvent("mark-rod", {rodno: rod_no})
+        const from_rod_no = event.dataTransfer.getData("text/plain")
+        const to_rod_no = event.target.getAttribute("phx-value-rodno")
+        this.pushEvent("move-disk", {from: from_rod_no, to: to_rod_no})
       }, false)
     }
   }

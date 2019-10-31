@@ -20,8 +20,12 @@ defmodule HanoiTowerWeb.HanoiLive do
     end
   end
 
-  def handle_event("mark-rod", %{"rodno" => rod_no}, %{assigns: state} = socket) do
-    new_state = update_disks(state, rod_no)
+  def handle_event(
+        "move-disk",
+        %{"from" => from_rod_no, "to" => to_rod_no},
+        %{assigns: state} = socket
+      ) do
+    new_state = update_disks(state, from_rod_no, to_rod_no)
     {:noreply, assign(socket, new_state)}
   end
 
@@ -36,15 +40,7 @@ defmodule HanoiTowerWeb.HanoiLive do
     }
   end
 
-  defp update_disks(%{marked: nil} = state, rod_no) do
-    Map.put(state, :marked, rod_no)
-  end
-
-  defp update_disks(%{marked: rod_no} = state, rod_no) do
-    state
-  end
-
-  defp update_disks(%{marked: from_rod_no} = state, to_rod_no) do
+  defp update_disks(state, from_rod_no, to_rod_no) do
     from_rod_key = get_rod_key(from_rod_no)
     to_rod_key = get_rod_key(to_rod_no)
 
@@ -52,9 +48,8 @@ defmodule HanoiTowerWeb.HanoiLive do
       state
       |> Map.update!(from_rod_key, &tl/1)
       |> Map.update!(to_rod_key, fn current -> [hd(state[from_rod_key]) | current] end)
-      |> Map.put(:marked, nil)
     else
-      Map.put(state, :marked, nil)
+      state
     end
   end
 
