@@ -19,11 +19,5 @@ defmodule HanoiTowerWeb.Router do
     pipe_through :browser
 
     live "/", HanoiLive
-    resources "/towers", HanoiController, only: [:index, :show]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", HanoiTowerWeb do
-  #   pipe_through :api
-  # end
 end
