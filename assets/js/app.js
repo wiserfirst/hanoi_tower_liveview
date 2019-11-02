@@ -14,8 +14,7 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
-const getRodNo = event =>
-  event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
+const getRodNo = event => event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
 
 const Hooks = {
   Disk: {
@@ -61,6 +60,7 @@ const Hooks = {
         const to_rod_no = getRodNo(event)
         this.pushEvent("move-disk", {from: from_rod_no, to: to_rod_no})
       }, false)
+
     }
   }
 }
