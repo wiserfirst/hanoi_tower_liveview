@@ -14,13 +14,16 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
+const getRodNo = event =>
+  event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
+
 const Hooks = {
   Disk: {
     mounted() {
       this.el.addEventListener("dragstart", event => {
         // make it half transparent
         event.target.style.opacity = .7
-        const rod_no = event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
+        const rod_no = getRodNo(event)
         event.dataTransfer.setData("text/plain", rod_no)
       }, false)
 
@@ -55,7 +58,7 @@ const Hooks = {
         // move dragged elem to the selected drop target
         event.target.style.background = ""
         const from_rod_no = event.dataTransfer.getData("text/plain")
-        const to_rod_no = event.target.getAttribute("phx-value-rodno")
+        const to_rod_no = getRodNo(event)
         this.pushEvent("move-disk", {from: from_rod_no, to: to_rod_no})
       }, false)
     }
