@@ -30,7 +30,6 @@ const Hooks = {
         // reset the transparency
         event.target.style.opacity = ""
       }, false)
-
     }
   },
   DropContainer: {
@@ -60,7 +59,6 @@ const Hooks = {
         const to_rod_no = getRodNo(event)
         this.pushEvent("move-disk", {from: from_rod_no, to: to_rod_no})
       }, false)
-
     }
   }
 }
