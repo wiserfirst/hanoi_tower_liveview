@@ -14,7 +14,7 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 
-const getRodNo = event => event.target.closest(".subcontainer").getAttribute("phx-value-rodno")
+const getRodNo = event => event.target.closest(".subcontainer").getAttribute("data-rodno")
 
 const Hooks = {
   Disk: {
