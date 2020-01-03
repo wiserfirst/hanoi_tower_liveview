@@ -13,7 +13,8 @@ defmodule HanoiTowerWeb.HanoiLive do
   end
 
   def handle_event("disk-num", %{"disk-count" => disk_count_str}, socket) do
-    with {disk_count, ""} <- Integer.parse(disk_count_str) do
+    with {disk_count, ""} <- Integer.parse(disk_count_str),
+         true <- valid_count?(disk_count) do
       {:noreply, assign(socket, initial_state(disk_count))}
     else
       _ -> {:noreply, socket}
@@ -28,6 +29,9 @@ defmodule HanoiTowerWeb.HanoiLive do
     new_state = update_disks(state, from_rod_no, to_rod_no)
     {:noreply, assign(socket, new_state)}
   end
+
+  defp valid_count?(count) when count > 0 and count <= 7, do: true
+  defp valid_count?(_), do: false
 
   defp initial_state(disk_count) do
     %{
