@@ -2,7 +2,7 @@ defmodule HanoiTowerWeb.HanoiLive do
   use Phoenix.LiveView
   alias HanoiTowerWeb.HanoiView
 
-  @default_disk_count 3
+  @default_disk_count 5
 
   def mount(_session, socket) do
     {:ok, assign(socket, initial_state(@default_disk_count))}
@@ -12,7 +12,9 @@ defmodule HanoiTowerWeb.HanoiLive do
     HanoiView.render("hanoi.html", assigns)
   end
 
-  def handle_event("disk-num", %{"disk-count" => disk_count_str}, socket) do
+  def handle_event("disk-num", %{"disk-count" => disk_count_str} = event, socket) do
+    IO.inspect(event, label: "received disk-num event: ")
+
     with {disk_count, ""} <- Integer.parse(disk_count_str),
          true <- valid_count?(disk_count) do
       {:noreply, assign(socket, initial_state(disk_count))}
@@ -23,9 +25,10 @@ defmodule HanoiTowerWeb.HanoiLive do
 
   def handle_event(
         "move-disk",
-        %{"from" => from_rod_no, "to" => to_rod_no},
+        %{"from" => from_rod_no, "to" => to_rod_no} = event,
         %{assigns: state} = socket
       ) do
+    IO.inspect(event, label: "received move-disk event: ")
     new_state = update_disks(state, from_rod_no, to_rod_no)
     {:noreply, assign(socket, new_state)}
   end
@@ -38,10 +41,10 @@ defmodule HanoiTowerWeb.HanoiLive do
       first_rod: Enum.to_list(1..disk_count),
       second_rod: [],
       third_rod: [],
-      marked: nil,
       disk_count: disk_count,
       time_elapsed: "00:00:00"
     }
+    |> IO.inspect(label: "initial state")
   end
 
   defp update_disks(state, from_rod_no, to_rod_no) do
